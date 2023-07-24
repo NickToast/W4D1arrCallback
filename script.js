@@ -44,9 +44,32 @@ function dropIt(arr, cb) {
     return [];
 }
 
+//this solution does not work if there is a value that provides false by the callback function that occurs after the index of slicing
+//basically this solution above only works specifically for this array of numbers 
+
 
 console.log(dropIt(numbers1, callback1))
 console.log('================')
 console.log(dropIt(numbers2, callback2))
 console.log('================')
 console.log(dropIt(numbers3, callback3))
+
+
+function dropIt2(arr, cb) {
+    const result = [];
+
+    for (let i = 0; i < arr.length; i++) {
+        if (cb(arr[i])) {
+            result.push(arr[i])
+            // return arr.slice(i)
+        }
+    }
+    return result;
+}
+
+
+console.log(dropIt2(numbers1, callback1))
+console.log('================')
+console.log(dropIt2(numbers2, callback2))
+console.log('================')
+console.log(dropIt2(numbers3, callback3))
